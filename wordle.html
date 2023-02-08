@@ -35,7 +35,7 @@
     <!-- Javascript -->
     <script>
         let answer = 'abcde';
-        let answer_flag = 0;
+        let answer_cnt = 0;
         let score = 1000;
         document.querySelector('#score').textContent = "Your Score : " + score;
 
@@ -58,26 +58,26 @@
                 input[0].style.background = 'lightgrey';
             }
             */
+
             // 이 부분은 위의 if 문을 하나하나 적는 걸 보여주고 for문에 대한 얘기를 하고 작성
             for(let i = 0; i < 5; i++) {
                 if (input[i].value == answer[i]) {
                     input[i].style.background = 'green';
-                    answer_flag = 1;
+                    answer_cnt++;
                 } else if (answer.includes(input[i].value) && input[i].value != '') {
                     input[i].style.background = 'yellow';
                     score -= 10;
-                    answer_flag = 0;
                 } else {
                     input[i].style.background = 'lightgrey';
-                    score -= 20;
-                    answer_flag = 0;
                 }
+
 
                 // class input 을 계속 놔두게 되면 처음 만든 5개에 대해서만 계속 비교
                 // 이 부분도 여기를 추가하지 않았을 때 벌어지는 일을 보여주고 작성
                 input[i].classList.remove('input');
 
             }
+            console.log(answer_cnt);
                             
             if (score < 0) {
                 alert('Game Over!');
@@ -85,7 +85,7 @@
                 
             }
 
-            if (answer_flag === 1) {
+            if (answer_cnt === 5) {
                 alert("Clear! Your Score : " + score);
                 location.reload();
             }
